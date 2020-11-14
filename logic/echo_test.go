@@ -16,7 +16,7 @@ func TestEcho(t *testing.T) {
 	fmt.Println(result)
 
 
-	if result != "Echo from the Server!" {
+	if result != "Hello, World!" {
 		t.Log(result)
 	}
 
