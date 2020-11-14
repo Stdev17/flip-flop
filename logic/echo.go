@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"log"
+	"fmt"
 )
 
 // Metric : Abstraction for metric data
@@ -25,7 +26,7 @@ func (m Metric) inc(w http.ResponseWriter, req *http.Request) {
 }
 
 func (m Metric) echo(w http.ResponseWriter, req *http.Request) {
-	
+	fmt.Fprintln(w, "Echo from the server!")
 }
 
 // Init : Starting an echo server

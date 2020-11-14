@@ -2,26 +2,28 @@ package logic
 
 import (
 	"fmt"
-	"net/http"
 	"io/ioutil"
+	"net/http"
 )
 
 // Request : on echo
-func Request() error {
+func Request() (string, error) {
 	url := "http://localhost:9000"
+	api := "/echo"
 
-  req, _ := http.NewRequest("GET", url, nil)
+	req, _ := http.NewRequest("GET", url+api, nil)
 
-  client := new(http.Client)
+	client := new(http.Client)
 	resp, e := client.Do(req)
 	if e != nil {
-		return e
+		return "", e
 	}
 
-  defer resp.Body.Close()
+	defer resp.Body.Close()
 
-  byteArray, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(byteArray))
-	
-	return nil
+	byteArray, _ := ioutil.ReadAll(resp.Body)
+	str := string(byteArray)
+	fmt.Println(str)
+
+	return str, nil
 }
